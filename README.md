@@ -1,4 +1,5 @@
 #GREENSCAN
+
 GreenScan is an Android-based plant identifier app designed for Bachelor of Science in AgriBusiness students, it focuses on the identification of plants specifically the weeds by providing their scientific names, and description. The app aimed to support the agriculture sector by offering an online tool to identify plants.
 
 #KEY FEATURES
