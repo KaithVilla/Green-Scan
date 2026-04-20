@@ -1,31 +1,66 @@
-#GREENSCAN
+# Weed Detection Model Training
 
-GreenScan is an Android-based plant identifier app designed for Bachelor of Science in AgriBusiness students, it focuses on the identification of plants specifically the weeds by providing their scientific names, and description. The app aimed to support the agriculture sector by offering an online tool to identify plants.
+## Philippine Weeds Dataset
 
-#KEY FEATURES
+This project is configured for common Philippine weeds including:
+- Crabgrass, Morsikos, Paragis, Teki, Makahiya, and more
 
-Plant Identification: Identifies plants using images captured from the camera or selected from the device gallery.
+See `weed_info.json` for complete list with scientific names and descriptions.
 
-Image-Based Analysis: Processes uploaded plant images to provide accurate recognition and classification results.
+## Quick Start
 
-Detailed Plant Information: Displays scientific names and relevant descriptions of identified plants.
+1. **Create folder structure**:
+```bash
+python create_dataset_folders.py
+```
 
-Local Database Management: Uses SQLite to store and manage plant datasets locally for fast and offline access.
+2. **Collect images** (see `dataset_guide_philippines.md`):
+   - 200+ images per weed type
+   - Variety in angles, lighting, growth stages
+   - Use your phone camera
 
-Educational Purpose: Designed to help users learn about plant species and improve botanical knowledge.
+3. **Install dependencies**:
+```bash
+pip install -r requirements.txt
+```
 
-#GreenScan Tech Stack
+4. **Validate dataset** (recommended):
+```bash
+python validate_dataset.py
+```
 
-Mobile Frontend: Android (Java/Kotlin)
+5. **Train the model**:
+```bash
+python train_model.py
+```
 
-Web Frontend: HTML, CSS, JavaScript
+6. **Evaluate accuracy**:
+```bash
+python evaluate_model.py
+```
 
-Backend: Render-hosted application services
+7. **Test TFLite model**:
+```bash
+python test_tflite_model.py
+```
 
-Database: SQLite (local storage for plant data management)
+8. **Deploy to Android**:
+   - Copy `models/weed_detector.tflite` → `app/src/main/assets/`
+   - Copy `models/labels.txt` → `app/src/main/assets/`
+   - Copy `weed_info.json` → `app/src/main/assets/`
+   - See `android/` folder for integration code
 
-Image Processing: Android Camera & Gallery APIs
+## Expected Results
 
-Hosting Platform: Render
+With 200+ images per weed type, expect 90-95% accuracy.
 
-Development Tools: Android Studio, Git, GitHub
+## Files
+
+- `train_model.py` - Training script with high accuracy settings
+- `evaluate_model.py` - Model evaluation and metrics
+- `validate_dataset.py` - Pre-training dataset validation
+- `test_tflite_model.py` - Test TFLite model before deployment
+- `weed_info.json` - Philippine weed database
+- `dataset_guide_philippines.md` - Collection guide for Philippines
+- `create_dataset_folders.py` - Auto-create folder structure
+- `android/` - Android integration code
